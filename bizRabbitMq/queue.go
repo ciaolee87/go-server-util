@@ -11,7 +11,7 @@ type Queue struct {
 	queue amqp.Queue
 }
 
-func (m *Queue) BizPublish(msg string) {
+func (m *Queue) BizPublish(msg []byte) {
 	err := m.ch.Publish(
 		"",
 		m.queue.Name,
@@ -31,7 +31,7 @@ func (m *Queue) BizPublish(msg string) {
 			Type:            "",
 			UserId:          "",
 			AppId:           "",
-			Body:            []byte(msg),
+			Body:            msg,
 		},
 	)
 
